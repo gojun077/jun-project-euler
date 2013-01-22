@@ -7,18 +7,23 @@ def genPrimes():
 	yield 2
 	yield 3
 	primes_list = [2, 3]
-
 	final = primes_list[-1]
 
-	for n in range(100):
+    # tests 100000 numbers for primality starting from 3
+	for i in range(100000):
 		final += 2
 		for e in primes_list:
 			if final % e == 0:
 				break
 		# loop fell through without finding a factor
 		else:
+			# add new prime to list
 			primes_list.append(final)
 			yield final
 
+counter = 0
 for i in genPrimes():
 	print i
+	counter += 1
+	if counter == 10001:
+		break
