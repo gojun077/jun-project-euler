@@ -2,7 +2,7 @@
 # By listing the first six prime numbers: 2, 3, 5, 7, 11, and 13, we can
 # see that the 6th prime is 13. What is the 10,001st prime number?
 
-def genPrimes(n):
+def genPrimes():
 	'''uses a generator to create a sequence of primes'''
 	yield 2
 	yield 3
@@ -10,7 +10,7 @@ def genPrimes(n):
 
 	final = primes_list[-1]
 
-	for i in range(n):
+	while True:
 		final += 2
 		for e in primes_list:
 			if final % e == 0:
@@ -19,5 +19,9 @@ def genPrimes(n):
 				primes_list.append(final)
 				yield final
 
-foo = genPrimes(6)
-print(list(foo)) # should return 2, 3, 5, 7, 11, 13
+foo = genPrimes()
+print(foo.next()) # 2
+print(foo.next()) # 3
+print(foo.next()) # 5
+print(foo.next()) # 5 -- why does it repeat?
+print(foo.next()) # 7
