@@ -10,18 +10,15 @@ def genPrimes():
 
 	final = primes_list[-1]
 
-	while True:
+	for n in range(100):
 		final += 2
 		for e in primes_list:
 			if final % e == 0:
 				break
-			else:
-				primes_list.append(final)
-				yield final
+		# loop fell through without finding a factor
+		else:
+			primes_list.append(final)
+			yield final
 
-foo = genPrimes()
-print(foo.next()) # 2
-print(foo.next()) # 3
-print(foo.next()) # 5
-print(foo.next()) # 5 -- why does it repeat?
-print(foo.next()) # 7
+for i in genPrimes():
+	print i
