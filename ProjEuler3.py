@@ -2,30 +2,42 @@
 # The prime factors of 13195 are 5, 7, 13 and 29. What is the largest
 # prime factor of the number 600851475143?
 
-def genPrimes():
-	'''uses a generator to create a sequence of primes'''
-	yield 2
-	yield 3
-	primes_list = [2, 3]
-	final = primes_list[-1]
+import doctest
 
-    # tests numbers for primality starting from 5 to 49999
-	for i in range(50000):
-		final += 2
-		for e in primes_list:
-			if final % e == 0:
-				break
-		# loop fell through without finding a factor
-		else:
-			# add new prime to list
-			primes_list.append(final)
-			yield final
+def genPrimes(n):
+    '''
+    Int -> Int
 
-prime_Factors = []
-testNum = 600851475143
-for i in genPrimes():
-	if testNum % i == 0:
-		prime_Factors.append(i)
-		print(prime_Factors)
+    Use a generator to create primes which are memoized in a list
+    of primes up to n
+    '''
+    yield 2
+    yield 3
+    primes_list = [2, 3]
+    last = primes_list[-1]
 
-print(prime_Factors[-1]) # print last element from list
+    while last < n:
+        last += 2
+        for p in primes_list:
+            if last % p == 0:
+                break
+        # loop falls through without finding a factor
+        else:
+            primes_list.append(last)
+            yield last
+
+
+def findPrimeFactors(n):
+    '''
+    Int -> ListOf Int
+
+    Return list of prime factors of n
+
+    >>> findPrimeFactors(13195)
+    [5, 7, 13, 29]
+    '''
+    prime_factors = [i for i in genPrimes(int(n**0.5)) if n % i == 0]
+    return prime_factors
+
+print(findPrimeFactors(600851475143))
+doctest.testmod()
