@@ -6,6 +6,11 @@
 # not exceed four million, find the sum of the even-valued terms.
 
 def genFib(n):
+    '''
+    Int -> Int
+
+    Use generator to calculate terms from fibonacci sequence
+    '''
     fibn_1 = 1 # fib(n - 1)
     fibn_2 = 0 # fib(n - 2)
     while fibn_1 < n:
@@ -16,10 +21,6 @@ def genFib(n):
         fibn_2 = fibn_1
         fibn_1 = next
 
-fibList =[]
-
-for i in genFib(4000000):
-    if i % 2 == 0:
-        fibList.append(i)
+fibList =[i for i in genFib(4000000) if i % 2 == 0]
 
 print(sum(fibList))
