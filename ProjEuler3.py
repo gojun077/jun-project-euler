@@ -8,8 +8,8 @@ def genPrimes(n):
     '''
     Int -> Int
 
-    Use a generator to create primes which are memoized in a list
-    of primes up to n
+    Use a generator to create primes up to n which are memoized
+    in a list
     '''
     yield 2
     yield 3
