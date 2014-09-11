@@ -13,6 +13,9 @@ def mult_3_5(n):
 
     >>> mult_3_5(10)
     23
+
+    >>> mult_3_5(100)
+    2318
     '''
     multList = [i for i in range(n) if i % 3 == 0 or i % 5 == 0]
     return sum(multList)
